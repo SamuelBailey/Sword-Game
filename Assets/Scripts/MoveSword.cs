@@ -44,16 +44,15 @@ public class MoveSword : MonoBehaviour
             new Vector3(0.0f, swordRigidbody.transform.position.y, swordRigidbody.transform.position.z)
         );
         Vector3 swordAngle = new Vector3(xAngle, yAngle);
-        // find the amount and in which direction to move the sword
-        Vector3 directionAngle = Vector3.Lerp(swordAngle, targetAngle, 0.5f);
 
+        // find the amount and in which direction to move the sword
         lastPosition = (lastPosition * smoothing + targetAngle) / (smoothing + 1);
 
 
         Vector3 direction = new Vector3();
         gameObject.transform.rotation = player.transform.rotation;
         gameObject.transform.position = player.transform.position;
-        gameObject.transform.localPosition = new Vector3(0, 0, 1);
+        gameObject.transform.localPosition = new Vector3(0, 0, swordDistance);
         gameObject.transform.RotateAround(player.transform.position, Vector3.up, lastPosition.x);
         gameObject.transform.RotateAround(player.transform.position, Vector3.left, lastPosition.y);
         
